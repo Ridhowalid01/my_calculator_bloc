@@ -55,7 +55,7 @@ class StandardButton extends StatelessWidget {
                     } else if (textButton == "⌫") {
                       calculatorBloc.add(DeleteLastEvent());
                     } else {
-                      calculatorBloc.add(AddInputEvent(textButton));
+                      calculatorBloc.add(AddInputEvent(inputToSend));
                     }
                   },
                   child: Text(
