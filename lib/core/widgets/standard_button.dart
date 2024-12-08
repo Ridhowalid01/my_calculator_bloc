@@ -1,40 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:my_calculator_bloc/features/bloc/calculator_bloc.dart';
 import '../utils/colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StandardButton extends StatelessWidget {
-  const StandardButton(
-      {super.key,
-      required this.label,
-      required this.onPressed,
-      this.isOperator = false,
-      this.isTop = false});
+  const StandardButton({
+    super.key,
+    required this.textButton,
+    this.isOperator = false,
+    this.isTop = false,
+  });
 
-  final String label;
-  final VoidCallback onPressed;
+  final String textButton;
   final bool isOperator;
   final bool isTop;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        margin: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          color: isOperator ? ButtonColors.operatorColor : isTop ? ButtonColors.secondaryColor : ButtonColors.primaryColor,
-          borderRadius: BorderRadius.circular(24.0)
-        ),
-        child: Center(
-          child: Text(
-            label,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 30,
-              fontWeight: FontWeight.w400
-            ),
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
+    ThemeBloc myTheme = context.read<ThemeBloc>();
+    return Expanded(
+        flex: 1,
+        child: Container(
+          // color: Colors.yellow,
+          height: isPortrait ? 90 : null,
+          margin: const EdgeInsets.symmetric(horizontal: 5),
+          child: BlocBuilder<ThemeBloc, bool>(
+            bloc: myTheme,
+            builder: (context, state) {
+              return ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        _getBackgroundColor(isTop, isOperator, state),
+                    foregroundColor: state
+                        ? DarkAppColors.textButtonColor
+                        : LightAppColors.textButtonColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24)),
+                    // padding: EdgeInsets.symmetric(vertical: 25)
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    textButton,
+                    style: const TextStyle(
+                        fontSize: 30, fontWeight: FontWeight.w400),
+                  ));
+            },
           ),
-        ),
-      ),
-    );
+        ));
+  }
+
+  Color _getBackgroundColor(bool isTop, bool isOperator, bool isDarkTheme) {
+    if (isTop) {
+      return isDarkTheme
+          ? DarkAppColors.topButtonColor
+          : LightAppColors.topButtonColor;
+    } else if (isOperator) {
+      return AppColors.operatorColor;
+    } else {
+      return isDarkTheme
+          ? DarkAppColors.primaryColor
+          : LightAppColors.primaryColor;
+    }
   }
 }

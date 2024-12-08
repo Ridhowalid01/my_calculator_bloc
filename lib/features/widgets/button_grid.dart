@@ -1,87 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_calculator_bloc/core/widgets/standard_button.dart';
-
-import '../bloc/calculator_bloc.dart';
-import '../bloc/calculator_event.dart';
 
 class ButtonGrid extends StatelessWidget {
   const ButtonGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<CalculatorBloc>();
-    return GridView.count(
-      crossAxisCount: 4,
+    return const Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        StandardButton(
-          label: 'C',
-          onPressed: () => bloc.add(ClearPressed()),
-          isTop: true,
+        Row(
+          children: [
+            StandardButton(textButton: "C", isOperator: true, isTop: true,),
+            StandardButton(textButton: "e^", isOperator: true, isTop: true,),
+            StandardButton(textButton: "%", isOperator: true, isTop: true,),
+            StandardButton(textButton: "÷", isOperator: true,),
+          ],
         ),
-        StandardButton(
-          label: "%",
-          onPressed: () => bloc.add(OperatorPressed("%")),
-          isTop: true,
+        // SizedBox(height: 10,),
+        Row(
+          children: [
+            StandardButton(textButton: "7",),
+            StandardButton(textButton: "8",),
+            StandardButton(textButton: "9",),
+            StandardButton(textButton: "x", isOperator: true,),
+          ],
         ),
-        StandardButton(
-          label: 'del',
-          onPressed: () => bloc.add(NumberPressed("")),
-          isTop: true,
+        // SizedBox(height: 10,),
+        Row(
+          children: [
+            StandardButton(textButton: "4",),
+            StandardButton(textButton: "5",),
+            StandardButton(textButton: "6",),
+            StandardButton(textButton: "-", isOperator: true,),
+          ],
         ),
-        StandardButton(
-          label: "÷",
-          onPressed: () => bloc.add(OperatorPressed("÷")),
-          isOperator: true,
+        Row(
+          children: [
+            StandardButton(textButton: "1",),
+            StandardButton(textButton: "2",),
+            StandardButton(textButton: "3",),
+            StandardButton(textButton: "+", isOperator: true,),
+          ],
         ),
-        StandardButton(
-          label: "7",
-          onPressed: () => bloc.add(NumberPressed("7")),
+        // SizedBox(height: 10,),
+        Row(
+          children: [
+            StandardButton(textButton: ".",),
+            StandardButton(textButton: "0",),
+            StandardButton(textButton: "⌫",),
+            StandardButton(textButton: "=", isOperator: true,),
+          ],
         ),
-        StandardButton(
-          label: "8",
-          onPressed: () => bloc.add(NumberPressed("8")),
-        ),
-        StandardButton(
-          label: "9",
-          onPressed: () => bloc.add(NumberPressed("9")),
-        ),
-        StandardButton(
-            label: 'x',
-            onPressed: () => bloc.add(OperatorPressed('x')),
-            isOperator: true),
-        StandardButton(
-            label: '4', onPressed: () => bloc.add(NumberPressed('4'))),
-        StandardButton(
-            label: '5', onPressed: () => bloc.add(NumberPressed('5'))),
-        StandardButton(
-            label: '6', onPressed: () => bloc.add(NumberPressed('6'))),
-        StandardButton(
-            label: '-',
-            onPressed: () => bloc.add(OperatorPressed('-')),
-            isOperator: true),
-        StandardButton(
-            label: '1', onPressed: () => bloc.add(NumberPressed('1'))),
-        StandardButton(
-            label: '2', onPressed: () => bloc.add(NumberPressed('2'))),
-        StandardButton(
-            label: '3', onPressed: () => bloc.add(NumberPressed('3'))),
-        StandardButton(
-            label: '+',
-            onPressed: () => bloc.add(OperatorPressed('+')),
-            isOperator: true),
-        StandardButton(
-            label: '000', onPressed: () => bloc.add(NumberPressed('000'))),
-        StandardButton(
-            label: '0', onPressed: () => bloc.add(NumberPressed('0'))),
-        StandardButton(
-          label: '.',
-          onPressed: () => bloc.add(NumberPressed("")),
-        ),
-        StandardButton(
-            label: '=',
-            onPressed: () => bloc.add(CalculateResult()),
-            isOperator: true),
+        // SizedBox(height: 10,),
       ],
     );
   }
