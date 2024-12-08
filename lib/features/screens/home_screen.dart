@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_calculator_bloc/features/bloc/calculator_bloc.dart';
-import 'package:my_calculator_bloc/main.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_calculator_bloc/features/bloc/theme_bloc.dart';
 
+import '../bloc/calculator_bloc.dart';
+import '../bloc/calculator_state.dart';
 import '../widgets/button_grid.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget {
         .orientation == Orientation.portrait;
 
     ThemeBloc myTheme = context.read<ThemeBloc>();
+    CalculatorBloc myCalculator = context.read<CalculatorBloc>();
 
     return Scaffold(
       appBar: AppBar(
@@ -33,10 +34,11 @@ class HomeScreen extends StatelessWidget {
               bloc: myTheme,
               builder: (context, state) {
                 return IconButton(
-                  onPressed: (){
+                  onPressed: () {
                     myTheme.changeTheme();
                   },
-                  icon: Icon(state ? Icons.dark_mode_outlined : Icons.light_mode),
+                  icon: Icon(
+                      state ? Icons.dark_mode_outlined : Icons.light_mode),
 
                 );
               },
@@ -52,28 +54,33 @@ class HomeScreen extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.bottomRight,
                   // color: Colors.blue,
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "500",
-                          style: TextStyle(
-                            fontSize: 24,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "10000",
-                          style: TextStyle(
-                            fontSize: 54,
-                          ),
-                        ),
-                      ],
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    child: BlocBuilder<CalculatorBloc, CalculatorState>(
+                      bloc: myCalculator,
+                      builder: (context, state) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              state.input,
+                              style: const TextStyle(
+                                fontSize: 24,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              state.result,
+                              style: const TextStyle(
+                                fontSize: 54,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ),
                 )),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_calculator_bloc/features/bloc/calculator_bloc.dart';
+import 'package:my_calculator_bloc/features/bloc/theme_bloc.dart';
 import '../utils/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_calculator_bloc/features/bloc/calculator_bloc.dart';
+import 'package:my_calculator_bloc/features/bloc/calculator_event.dart';
 
 class StandardButton extends StatelessWidget {
   const StandardButton({
@@ -31,16 +33,31 @@ class StandardButton extends StatelessWidget {
             builder: (context, state) {
               return ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        _getBackgroundColor(isTop, isOperator, state),
-                    foregroundColor: state
-                        ? DarkAppColors.textButtonColor
-                        : LightAppColors.textButtonColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24)),
-                    // padding: EdgeInsets.symmetric(vertical: 25)
+                      backgroundColor:
+                          _getBackgroundColor(isTop, isOperator, state),
+                      foregroundColor: state
+                          ? DarkAppColors.textButtonColor
+                          : LightAppColors.textButtonColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24))
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    final calculatorBloc = context.read<CalculatorBloc>();
+                    String inputToSend = textButton;
+                    // Mapping khusus
+                    if (textButton == "e^") {
+                      inputToSend = "^"; // Kirim "^" ke input
+                    }
+                    if (textButton == "C") {
+                      calculatorBloc.add(ClearInputEvent());
+                    } else if (textButton == "=") {
+                      calculatorBloc.add(CalculateResultEvent());
+                    } else if (textButton == "⌫") {
+                      calculatorBloc.add(DeleteLastEvent());
+                    } else {
+                      calculatorBloc.add(AddInputEvent(textButton));
+                    }
+                  },
                   child: Text(
                     textButton,
                     style: const TextStyle(
