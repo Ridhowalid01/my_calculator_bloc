@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:my_calculator_bloc/features/bloc/theme_bloc.dart';
-import '../utils/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_calculator_bloc/features/bloc/calculator_bloc.dart';
 import 'package:my_calculator_bloc/features/bloc/calculator_event.dart';
+import 'package:my_calculator_bloc/features/bloc/theme_bloc.dart';
+
+import '../utils/colors.dart';
 
 class StandardButton extends StatelessWidget {
   const StandardButton({
@@ -25,9 +27,8 @@ class StandardButton extends StatelessWidget {
     return Expanded(
         flex: 1,
         child: Container(
-          // color: Colors.yellow,
-          height: isPortrait ? 90 : null,
-          margin: const EdgeInsets.symmetric(horizontal: 5),
+          height: isPortrait ? 90.r : 45.r,
+          margin: EdgeInsets.symmetric(horizontal: 5.r),
           child: BlocBuilder<ThemeBloc, bool>(
             bloc: myTheme,
             builder: (context, state) {
@@ -46,7 +47,7 @@ class StandardButton extends StatelessWidget {
                     String inputToSend = textButton;
                     // Mapping khusus
                     if (textButton == "e^") {
-                      inputToSend = "^"; // Kirim "^" ke input
+                      inputToSend = "^";
                     }
                     if (textButton == "C") {
                       calculatorBloc.add(ClearInputEvent());
@@ -60,8 +61,8 @@ class StandardButton extends StatelessWidget {
                   },
                   child: Text(
                     textButton,
-                    style: const TextStyle(
-                        fontSize: 30, fontWeight: FontWeight.w400),
+                    style: TextStyle(
+                        fontSize: 30.r, fontWeight: FontWeight.w400),
                   ));
             },
           ),

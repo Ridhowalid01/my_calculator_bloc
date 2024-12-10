@@ -17,7 +17,6 @@ class ButtonGrid extends StatelessWidget {
             StandardButton(textButton: "÷", isOperator: true,),
           ],
         ),
-        // SizedBox(height: 10,),
         Row(
           children: [
             StandardButton(textButton: "7",),
@@ -26,7 +25,6 @@ class ButtonGrid extends StatelessWidget {
             StandardButton(textButton: "x", isOperator: true,),
           ],
         ),
-        // SizedBox(height: 10,),
         Row(
           children: [
             StandardButton(textButton: "4",),
@@ -43,7 +41,6 @@ class ButtonGrid extends StatelessWidget {
             StandardButton(textButton: "+", isOperator: true,),
           ],
         ),
-        // SizedBox(height: 10,),
         Row(
           children: [
             StandardButton(textButton: ".",),
@@ -52,7 +49,6 @@ class ButtonGrid extends StatelessWidget {
             StandardButton(textButton: "=", isOperator: true,),
           ],
         ),
-        // SizedBox(height: 10,),
       ],
     );
   }
