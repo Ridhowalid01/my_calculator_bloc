@@ -14,6 +14,8 @@ A simple calculator app built using Flutter and BLoC state management. It suppor
 figma = https://www.figma.com/community/file/1041082497681424521
 
 ## Demo
+![Demo Light Mode](light_mode.png)
+![Demo Dark Mode](dark_mode.png)
 
 
 
