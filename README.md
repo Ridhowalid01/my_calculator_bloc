@@ -1,6 +1,21 @@
-# my_calculator_bloc
+# Flutter Calculator with BLoC
 
-A new Flutter project.
+A simple calculator app built using Flutter and BLoC state management. It supports basic arithmetic operations and provides a responsive, user-friendly interface.
+
+## Features
+- Basic arithmetic operations (+, -, *, ÷, ^, %)
+- Real-time input handling with BLoC
+- Light and Dark mode themes
+- Displays results with formatted numbers (e.g., 1,000,000)
+- Responsive design for different screen sizes
+
+
+## Design Reference
+figma = https://www.figma.com/community/file/1041082497681424521
+
+## Demo
+
+
 
 ## Getting Started
 
