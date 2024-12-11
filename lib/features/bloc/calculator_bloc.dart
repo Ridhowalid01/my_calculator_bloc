@@ -13,7 +13,27 @@ class CalculatorBloc extends Bloc<CalculatorEvent, CalculatorState> {
   }
 
   void _onAddInput(AddInputEvent event, Emitter<CalculatorState> emit) {
-    emit(state.copyWith(input: state.input + event.input));
+    final currentInput = state.input;
+    final newInput = event.input;
+    const zeroInput = '0';
+
+    const operators = ['+', '-', 'x', '÷', '^', '%'];
+
+
+    if (operators.contains(newInput) || newInput == '.') {
+      if(currentInput.isEmpty) {
+        emit(state.copyWith(input: zeroInput + newInput));
+      } else if (currentInput.isNotEmpty &&
+          operators.contains(currentInput[currentInput.length - 1])) {
+        emit(state.copyWith(
+            input:
+                currentInput.substring(0, currentInput.length - 1) + newInput));
+      } else {
+        emit(state.copyWith(input: currentInput + newInput));
+      }
+    } else {
+      emit(state.copyWith(input: currentInput + newInput));
+    }
   }
 
   void _onClearInput(ClearInputEvent event, Emitter<CalculatorState> emit) {
