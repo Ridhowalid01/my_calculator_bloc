@@ -40,8 +40,7 @@ class StandardButton extends StatelessWidget {
                           ? DarkAppColors.textButtonColor
                           : LightAppColors.textButtonColor,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24))
-                  ),
+                          borderRadius: BorderRadius.circular(24))),
                   onPressed: () {
                     final calculatorBloc = context.read<CalculatorBloc>();
                     String inputToSend = textButton;
@@ -61,8 +60,8 @@ class StandardButton extends StatelessWidget {
                   },
                   child: Text(
                     textButton,
-                    style: TextStyle(
-                        fontSize: 30.r, fontWeight: FontWeight.w400),
+                    style:
+                        TextStyle(fontSize: 30.r, fontWeight: FontWeight.w400),
                   ));
             },
           ),

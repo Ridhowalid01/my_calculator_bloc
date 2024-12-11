@@ -19,9 +19,8 @@ class CalculatorBloc extends Bloc<CalculatorEvent, CalculatorState> {
 
     const operators = ['+', '-', 'x', '÷', '^', '%'];
 
-
     if (operators.contains(newInput) || newInput == '.') {
-      if(currentInput.isEmpty) {
+      if (currentInput.isEmpty) {
         emit(state.copyWith(input: zeroInput + newInput));
       } else if (currentInput.isNotEmpty &&
           operators.contains(currentInput[currentInput.length - 1])) {

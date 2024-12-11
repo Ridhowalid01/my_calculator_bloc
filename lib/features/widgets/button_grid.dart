@@ -11,42 +11,93 @@ class ButtonGrid extends StatelessWidget {
       children: [
         Row(
           children: [
-            StandardButton(textButton: "C", isOperator: true, isTop: true,),
-            StandardButton(textButton: "e^", isOperator: true, isTop: true,),
-            StandardButton(textButton: "%", isOperator: true, isTop: true,),
-            StandardButton(textButton: "÷", isOperator: true,),
+            StandardButton(
+              textButton: "C",
+              isOperator: true,
+              isTop: true,
+            ),
+            StandardButton(
+              textButton: "e^",
+              isOperator: true,
+              isTop: true,
+            ),
+            StandardButton(
+              textButton: "%",
+              isOperator: true,
+              isTop: true,
+            ),
+            StandardButton(
+              textButton: "÷",
+              isOperator: true,
+            ),
           ],
         ),
         Row(
           children: [
-            StandardButton(textButton: "7",),
-            StandardButton(textButton: "8",),
-            StandardButton(textButton: "9",),
-            StandardButton(textButton: "x", isOperator: true,),
+            StandardButton(
+              textButton: "7",
+            ),
+            StandardButton(
+              textButton: "8",
+            ),
+            StandardButton(
+              textButton: "9",
+            ),
+            StandardButton(
+              textButton: "x",
+              isOperator: true,
+            ),
           ],
         ),
         Row(
           children: [
-            StandardButton(textButton: "4",),
-            StandardButton(textButton: "5",),
-            StandardButton(textButton: "6",),
-            StandardButton(textButton: "-", isOperator: true,),
+            StandardButton(
+              textButton: "4",
+            ),
+            StandardButton(
+              textButton: "5",
+            ),
+            StandardButton(
+              textButton: "6",
+            ),
+            StandardButton(
+              textButton: "-",
+              isOperator: true,
+            ),
           ],
         ),
         Row(
           children: [
-            StandardButton(textButton: "1",),
-            StandardButton(textButton: "2",),
-            StandardButton(textButton: "3",),
-            StandardButton(textButton: "+", isOperator: true,),
+            StandardButton(
+              textButton: "1",
+            ),
+            StandardButton(
+              textButton: "2",
+            ),
+            StandardButton(
+              textButton: "3",
+            ),
+            StandardButton(
+              textButton: "+",
+              isOperator: true,
+            ),
           ],
         ),
         Row(
           children: [
-            StandardButton(textButton: ".",),
-            StandardButton(textButton: "0",),
-            StandardButton(textButton: "⌫",),
-            StandardButton(textButton: "=", isOperator: true,),
+            StandardButton(
+              textButton: ".",
+            ),
+            StandardButton(
+              textButton: "0",
+            ),
+            StandardButton(
+              textButton: "⌫",
+            ),
+            StandardButton(
+              textButton: "=",
+              isOperator: true,
+            ),
           ],
         ),
       ],

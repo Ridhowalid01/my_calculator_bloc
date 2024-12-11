@@ -16,8 +16,8 @@ class AddInputEvent extends CalculatorEvent {
   List<Object> get props => [input];
 }
 
-class ClearInputEvent extends CalculatorEvent{}
+class ClearInputEvent extends CalculatorEvent {}
 
-class DeleteLastEvent extends CalculatorEvent{}
+class DeleteLastEvent extends CalculatorEvent {}
 
-class CalculateResultEvent extends CalculatorEvent{}
+class CalculateResultEvent extends CalculatorEvent {}
