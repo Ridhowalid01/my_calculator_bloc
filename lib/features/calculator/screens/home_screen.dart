@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_calculator_bloc/features/bloc/theme_bloc.dart';
 
+import '../../theme/bloc/theme_bloc.dart';
 import '../bloc/calculator_bloc.dart';
 import '../bloc/calculator_state.dart';
 import '../widgets/button_grid.dart';

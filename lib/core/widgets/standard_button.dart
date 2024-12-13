@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_calculator_bloc/features/bloc/calculator_bloc.dart';
-import 'package:my_calculator_bloc/features/bloc/calculator_event.dart';
-import 'package:my_calculator_bloc/features/bloc/theme_bloc.dart';
+import 'package:my_calculator_bloc/features/calculator/bloc/calculator_bloc.dart';
+import 'package:my_calculator_bloc/features/calculator/bloc/calculator_event.dart';
+import '../../features/theme/bloc/theme_bloc.dart';
+import '../utils/get_background_color.dart';
 
 import '../utils/colors.dart';
 
@@ -35,28 +36,14 @@ class StandardButton extends StatelessWidget {
               return ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor:
-                          _getBackgroundColor(isTop, isOperator, state),
+                          getBackgroundColor(isTop, isOperator, state),
                       foregroundColor: state
                           ? DarkAppColors.textButtonColor
                           : LightAppColors.textButtonColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24))),
                   onPressed: () {
-                    final calculatorBloc = context.read<CalculatorBloc>();
-                    String inputToSend = textButton;
-                    // Mapping khusus
-                    if (textButton == "e^") {
-                      inputToSend = "^";
-                    }
-                    if (textButton == "C") {
-                      calculatorBloc.add(ClearInputEvent());
-                    } else if (textButton == "=") {
-                      calculatorBloc.add(CalculateResultEvent());
-                    } else if (textButton == "⌫") {
-                      calculatorBloc.add(DeleteLastEvent());
-                    } else {
-                      calculatorBloc.add(AddInputEvent(inputToSend));
-                    }
+                    handlerButtonPress(context);
                   },
                   child: Text(
                     textButton,
@@ -68,17 +55,21 @@ class StandardButton extends StatelessWidget {
         ));
   }
 
-  Color _getBackgroundColor(bool isTop, bool isOperator, bool isDarkTheme) {
-    if (isTop) {
-      return isDarkTheme
-          ? DarkAppColors.topButtonColor
-          : LightAppColors.topButtonColor;
-    } else if (isOperator) {
-      return AppColors.operatorColor;
+  void handlerButtonPress(BuildContext context) {
+    final calculatorBloc = context.read<CalculatorBloc>();
+    String inputToSend = textButton;
+    // Mapping khusus
+    if (textButton == "e^") {
+      inputToSend = "^";
+    }
+    if (textButton == "C") {
+      calculatorBloc.add(ClearInputEvent());
+    } else if (textButton == "=") {
+      calculatorBloc.add(CalculateResultEvent());
+    } else if (textButton == "⌫") {
+      calculatorBloc.add(DeleteLastEvent());
     } else {
-      return isDarkTheme
-          ? DarkAppColors.primaryColor
-          : LightAppColors.primaryColor;
+      calculatorBloc.add(AddInputEvent(inputToSend));
     }
   }
 }
