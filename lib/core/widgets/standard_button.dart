@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_calculator_bloc/features/calculator/bloc/calculator_bloc.dart';
-import 'package:my_calculator_bloc/features/calculator/bloc/calculator_event.dart';
-import '../../features/theme/bloc/theme_bloc.dart';
-import '../utils/get_background_color.dart';
 
+import '../../features/theme/bloc/theme_bloc.dart';
+import '../utils/button_hanldler.dart';
 import '../utils/colors.dart';
+import '../utils/get_background_color.dart';
 
 class StandardButton extends StatelessWidget {
   const StandardButton({
@@ -43,7 +42,7 @@ class StandardButton extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24))),
                   onPressed: () {
-                    handlerButtonPress(context);
+                    handlerButtonPress(context, textButton);
                   },
                   child: Text(
                     textButton,
@@ -53,23 +52,5 @@ class StandardButton extends StatelessWidget {
             },
           ),
         ));
-  }
-
-  void handlerButtonPress(BuildContext context) {
-    final calculatorBloc = context.read<CalculatorBloc>();
-    String inputToSend = textButton;
-    // Mapping khusus
-    if (textButton == "e^") {
-      inputToSend = "^";
-    }
-    if (textButton == "C") {
-      calculatorBloc.add(ClearInputEvent());
-    } else if (textButton == "=") {
-      calculatorBloc.add(CalculateResultEvent());
-    } else if (textButton == "⌫") {
-      calculatorBloc.add(DeleteLastEvent());
-    } else {
-      calculatorBloc.add(AddInputEvent(inputToSend));
-    }
   }
 }
